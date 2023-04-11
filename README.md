@@ -2,8 +2,11 @@
 Repository for the integrative task
 
 
+Members:
 
-#Integrative Task #1
+Juan Felipe Jojoa - A00382042, Felipe Rojas Prado A00393918
+
+
 
 
 
