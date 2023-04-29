@@ -1,7 +1,7 @@
 package datastructures.model;
 import java.time.LocalTime;
 
-public class Passenger {
+public class Passenger implements Comparable<Passenger> {
     String name;
     int id;
     int age;
@@ -12,7 +12,7 @@ public class Passenger {
     private LocalTime time;
 
 
-    public Passenger(String name, int id, int age, int row, String colum, Boolean firstClass, int miles, LocalTime time) {
+    public Passenger(String name, int id, int age, int miles, int row, String colum, Boolean firstClass) {
         this.name = name;
         this.id = id;
         this.age = age;
