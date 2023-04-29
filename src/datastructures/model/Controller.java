@@ -43,6 +43,38 @@ public class Controller {
             e.printStackTrace();
         }
     }
+    public void orderPassenger(String archivo) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] atributos = line.split(" ");
+                int idPassenger = Integer.parseInt(atributos[0]);
+                Passenger passenger = hashTable.get(idPassenger);
+                if (passenger == null) {
+                    System.out.println("No se encontró el pasajero con id " + idPassenger);
+                    continue;
+                }
+
+                passenger.setTime(LocalTime.now());
+                if (passenger.getTime().isBefore(getTimeOfPlane())) {
+                    passenger.setMiles(passenger.getMiles() + 100); //Si el pasajero llega antes se le da una bonificacion por puntualidad
+                }
+
+                if (passenger.getFirstClass()) {
+                    firstClass.insert(passenger);
+                } else {
+                    turistClass.enqueue(passenger);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void order(){
+        firstClass.print();
+        turistClass.print();
+    }
+
 
 
 }
