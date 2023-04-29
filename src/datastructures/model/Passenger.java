@@ -90,4 +90,14 @@ public class Passenger {
     public String toString(){
         return "Passenger is: "+name +".";
     }
+
+
+    public int compareTo(Passenger other){
+        int forMiles = Integer.compare(this.miles, other.getMiles());
+        if(forMiles != 0){
+            return forMiles;
+        }else{
+            return Integer.compare(this.age, other.getAge());
+        }
+    }
 }
