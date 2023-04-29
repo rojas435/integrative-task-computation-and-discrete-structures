@@ -1,0 +1,6 @@
+Nombre:Juan Perez
+Identificacion:123456789
+Asiento:10A
+Categoria:Primera Clase
+Millas acumuladas:10000
+Necesidades especiales:False
