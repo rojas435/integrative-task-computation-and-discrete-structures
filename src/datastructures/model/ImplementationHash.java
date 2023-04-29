@@ -4,7 +4,7 @@ public class ImplementationHash<K extends Comparable<K>, V> {
     private int length;
     private HashTable <K, V>[] list;
     //Constructor
-    public ImplementationHash(int length, HashTable<K, V>[] list) {
+    public ImplementationHash(int length) {
         this.length = length;
         list = new HashTable[length];
     }
@@ -35,15 +35,22 @@ public class ImplementationHash<K extends Comparable<K>, V> {
     // Metodo de insercion, este recibe el hash code de la Key
     //donde esta puede ser +,- o 0, este metodo su unica funcion es determinar
     // si el hash code es negativo y si no se mantiene igual
-    public void insert(K key, V value){
-        int first = hash(key);
-        HashTable<K, V> node = new HashTable<K, V>(key, value);
-        if(list[first] != null){
-            list[first].setPrev(node);
-            node.setNext(list[first]);
+    public void insert(K key, V value) {
+        int index = hash(key);
+        HashTable<K, V> node = new HashTable<>(key, value);
+
+        if (list[index] == null) {
+            list[index] = node;
+        } else {
+            HashTable<K, V> current = list[index];
+            while (current.getNext() != null) {
+                current = current.getNext();
+            }
+            current.setNext(node);
+            node.setPrev(current);
         }
-        list[first] = node;
     }
+
     public V get(K key){
         int index=hash(key);
         HashTable<K,V> node=list[index];

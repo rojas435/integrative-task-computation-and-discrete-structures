@@ -74,7 +74,7 @@ public class Main {
     }
 
     public void embark(){
-        
+
     }
     public void orderOfArrival(){
 

@@ -12,6 +12,8 @@ public class HashTable<K extends Comparable<K>,V>{
     public HashTable(K key, V value){
         this.key = key;
         this.value = value;
+        next = null;
+        prev = null;
     }
 
     //Getters and Setters
