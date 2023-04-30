@@ -14,8 +14,9 @@ public class Main {
 
     public static void main(String[] args) {
         Main main = new Main();
-
+        main.txtReader();
         int option = -1;
+
         do{
             option = main.getOptionShowMenu();
             main.executeOption(option);
@@ -37,7 +38,7 @@ public class Main {
                 "\n<<<<< Welcome to the boarding and disembarkation system >>>>>\n"+
                         "1. Order of arrival\n"+
                         "2. Embark\n"+
-                        "2. Disembark\n"+
+                        "3. Disembark\n"+
                         "0. Exit. \n"+
                         "Option: ");
     }
@@ -47,7 +48,9 @@ public class Main {
         switch(option){
             case 1-> orderOfArrival();
 
-            case 2-> embark();
+            case 2-> orderOfEmbark();
+
+            case 3 -> disembark();
 
             case 0-> System.out.println("Exit program.");
 
@@ -72,11 +75,26 @@ public class Main {
 
         return option;
     }
-
-    public void embark(){
-
+    public void orderOfEmbark(){
+        controller.order();
     }
     public void orderOfArrival(){
-
+        System.out.println("Para continuar dame la ruta en donde se encuentre el archivo por orden de llegada.");
+        reader.nextLine();
+        String archivo = reader.nextLine();
+        controller.orderPassenger(archivo);
     }
+    public void txtReader(){
+        System.out.println("Dame la direccion de donde se encuentre el archivo con la informacion de los pasajeros ");
+        String dir = reader.next();
+        reader.nextLine();
+        System.out.println("Dame la cantidad de pasajeros que van a estar en el vuelo ");
+        int num = reader.nextInt();
+        controller.uploadPassengers(dir, num);
+    }
+    public void disembark(){
+        controller.disembark();
+    }
+
+
 }
