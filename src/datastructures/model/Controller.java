@@ -1,25 +1,18 @@
 package datastructures.model;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalTime;
 import java.io.*;
 import java.util.ArrayList;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
 import java.util.stream.Stream;
 
-
 public class Controller {
-
     private ImplementationHash<Integer, Passenger> hashTable;
-
     private Priority<Passenger> firstClass;
-
     private Queue<Passenger> turistClass;
-
     private LocalTime timeOfPlane;
 
+    
     public Controller() {
         firstClass = new Priority<>();
         turistClass = new Queue<>();
@@ -29,6 +22,7 @@ public class Controller {
     public LocalTime getTimeOfPlane(){
         return timeOfPlane;
     }
+
     public void setTimeOfPlane(){
         this.timeOfPlane = timeOfPlane;
     }
@@ -81,16 +75,11 @@ public class Controller {
         }
     }
 
-    public void disembark(){
-
+    public void disembark() {
     }
-
 
     public void order(){
         firstClass.print();
         turistClass.print();
     }
-
-
-
 }

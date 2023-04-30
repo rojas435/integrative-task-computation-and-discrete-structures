@@ -8,12 +8,15 @@ public class Queue<T> {
     public Queue(){
         queue = new ArrayList<>();
     }
+
     public void enqueue(T data){
         queue.add(data);
     }
+
     public boolean isEmpty(){
         return queue.isEmpty();
     }
+
     public T dequeue(){
         if(isEmpty()){
             throw new EmptyStackException();
@@ -26,6 +29,7 @@ public class Queue<T> {
         }
         return queue.get(0);
     }
+    
     public void print() {
 
         System.out.print("\nClase Turista\n");

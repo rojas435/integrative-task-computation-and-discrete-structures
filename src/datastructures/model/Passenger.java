@@ -12,6 +12,8 @@ public class Passenger implements Comparable<Passenger> {
     private LocalTime time;
 
 
+
+
     public Passenger(String name, int id, int age, int miles, int row, String colum, Boolean firstClass) {
         this.name = name;
         this.id = id;
