@@ -1,5 +1,6 @@
 package datastructures.model;
 import java.time.LocalTime;
+import java.util.Iterator;
 
 public class Passenger implements Comparable<Passenger> {
     String name;
@@ -22,7 +23,6 @@ public class Passenger implements Comparable<Passenger> {
         this.colum = colum;
         this.firstClass = firstClass;
         this.miles = miles;
-        this.time = time;
     }
 
     public String getName() {
@@ -90,7 +90,7 @@ public class Passenger implements Comparable<Passenger> {
     }
     @Override
     public String toString(){
-        return "The name of the passenger is: "+name +".";
+        return "The name of the passenger is: "+name +".\n";
     }
 
     @Override
@@ -102,4 +102,10 @@ public class Passenger implements Comparable<Passenger> {
             return Integer.compare(this.age, other.getAge());
         }
     }
+
+    public static Iterator<Passenger> iterator() {
+        return null;
+    }
+
+    
 }

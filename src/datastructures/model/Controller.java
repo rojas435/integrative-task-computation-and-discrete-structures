@@ -4,6 +4,7 @@ import java.nio.file.Paths;
 import java.time.LocalTime;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.stream.Stream;
 
 public class Controller {
@@ -75,8 +76,38 @@ public class Controller {
         }
     }
 
-    public void disembark() {
+    public ArrayList<String> disembark() {
+        ArrayList<String> desabordando = new ArrayList<>();
+        Queue<Passenger> primeraClase = new Queue<>();
+        Queue<Passenger> claseEconomica = new Queue<>();
+    
+        Iterator<Passenger> iterator = Passenger.iterator();
+    
+        while (iterator.hasNext()) {
+            Passenger pasajero = iterator.next();
+            if (pasajero.getClass().equals("primera")) {
+                primeraClase.enqueue(pasajero);
+                iterator.remove();
+            } else {
+                claseEconomica.enqueue(pasajero);
+                iterator.remove();
+            }
+        }
+    
+        while (!primeraClase.isEmpty() || !claseEconomica.isEmpty()) {
+            if (!primeraClase.isEmpty()) {
+                Passenger pasajero = primeraClase.dequeue();
+                desabordando.add(pasajero.getName());
+            } else {
+                Passenger pasajero = claseEconomica.dequeue();
+                desabordando.add(pasajero.getName());
+            }
+        }
+    
+        return desabordando;
     }
+    
+    
 
     public void order(){
         firstClass.print();
