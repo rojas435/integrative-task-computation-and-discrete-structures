@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 public class Priority <T extends  Comparable<T>> {
+    
     private ArrayList<T> heap;
 
     public Priority(){
@@ -15,6 +16,7 @@ public class Priority <T extends  Comparable<T>> {
         heap.set(index1, heap.get(index2));
         heap.set(index2, temp);
     }
+    
     public void print() {
         System.out.println("Primera Clase\n");
         for (T item : heap) {
@@ -34,6 +36,7 @@ public class Priority <T extends  Comparable<T>> {
             parentIndex = (childIndex - 1) / 2;
         }
     }
+
     public T delete() {
         if (heap.isEmpty()) {
             throw new NoSuchElementException();
@@ -68,6 +71,7 @@ public class Priority <T extends  Comparable<T>> {
         }
         return root;
     }
+
     public boolean isEmpty(){
         return heap.isEmpty();
     }

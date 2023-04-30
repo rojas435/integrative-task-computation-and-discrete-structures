@@ -8,14 +8,14 @@ import java.util.NoSuchElementException;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import datastructures.model.ImplementationHash;
+import datastructures.model.Plane;
 import datastructures.model.Priority;
 
 @RunWith(JUnit4.class)
-public class HashTableTest {
+public class SomeTest {
     @Test
     public void testInsert() {
-        ImplementationHash<String, Integer> hashTable = new ImplementationHash<>(3);
+        Plane<String, Integer> hashTable = new Plane<>(3);
         hashTable.insert("uno", 1);
         hashTable.insert("dos", 2);
         hashTable.insert("tres", 3);
@@ -26,7 +26,7 @@ public class HashTableTest {
 
     @Test
     public void testRemove() {
-        ImplementationHash<String, Integer> hashTable = new ImplementationHash<>(3);
+        Plane<String, Integer> hashTable = new Plane<>(3);
         hashTable.insert("uno", 1);
         hashTable.insert("dos", 2);
         hashTable.insert("tres", 3);
@@ -79,5 +79,7 @@ public class HashTableTest {
         assertEquals(Integer.valueOf(5), priorityQueue.delete());
         assertTrue(priorityQueue.isEmpty());
     }
+
+
 
 }

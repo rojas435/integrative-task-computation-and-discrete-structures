@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.stream.Stream;
 
 public class Controller {
-    private ImplementationHash<Integer, Passenger> hashTable;
+    private Plane<Integer, Passenger> hashTable;
     private Priority<Passenger> firstClass;
     private Queue<Passenger> turistClass;
     private LocalTime timeOfPlane;
@@ -29,7 +29,7 @@ public class Controller {
 
     public void uploadPassengers(String archivo, int num) {
         File file = new File(archivo);
-        hashTable = new ImplementationHash<>(num);
+        hashTable = new Plane<>(num);
         try {
             FileInputStream fis = new FileInputStream(file);
             BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
