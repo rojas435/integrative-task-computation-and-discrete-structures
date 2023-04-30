@@ -1,20 +1,18 @@
 package datastructures.model;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalTime;
 import java.io.*;
 import java.util.ArrayList;
-import java.nio.charset.StandardCharsets;
-
+import java.util.stream.Stream;
 
 public class Controller {
-
     private ImplementationHash<Integer, Passenger> hashTable;
-
     private Priority<Passenger> firstClass;
-
     private Queue<Passenger> turistClass;
-
     private LocalTime timeOfPlane;
 
+    
     public Controller() {
         firstClass = new Priority<>();
         turistClass = new Queue<>();
@@ -24,6 +22,7 @@ public class Controller {
     public LocalTime getTimeOfPlane(){
         return timeOfPlane;
     }
+
     public void setTimeOfPlane(){
         this.timeOfPlane = timeOfPlane;
     }
@@ -31,50 +30,56 @@ public class Controller {
     public void uploadPassengers(String archivo, int num) {
         File file = new File(archivo);
         hashTable = new ImplementationHash<>(num);
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+        try {
+            FileInputStream fis = new FileInputStream(file);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] atribute = line.split(";");
-                Passenger passenger = new Passenger(atribute[0], Integer.parseInt(atribute[1]), Integer.parseInt(atribute[2]),
-                        Integer.parseInt(atribute[3]), Integer.parseInt(atribute[4]), atribute[5], Boolean.parseBoolean(atribute[6]));
-                hashTable.insert(Integer.parseInt(atribute[1]), passenger);
+                String[] atributs = line.split(";");
+                Passenger passenger = new Passenger(atributs[0], Integer.parseInt(atributs[1]), Integer.parseInt(atributs[2]),Integer.parseInt(atributs[3]),
+                        Integer.parseInt(atributs[4]),atributs[5],Boolean.parseBoolean(atributs[6]));
+
+                hashTable.insert(Integer.parseInt(atributs[1]),passenger);
             }
+            fis.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public void orderPassenger(String archivo) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] atributos = line.split(" ");
-                int idPassenger = Integer.parseInt(atributos[0]);
-                Passenger passenger = hashTable.get(idPassenger);
-                if (passenger == null) {
-                    System.out.println("No se encontró el pasajero con id " + idPassenger);
-                    continue;
-                }
 
-                passenger.setTime(LocalTime.now());
-                if (passenger.getTime().isBefore(getTimeOfPlane())) {
-                    passenger.setMiles(passenger.getMiles() + 100); //Si el pasajero llega antes se le da una bonificacion por puntualidad
-                }
+    public void orderPassenger(String filePath) {
+        try (Stream<String> lines = Files.lines(Paths.get(filePath))) {
+            lines.forEach(line -> {
+                String[] atributs = line.split(" ");
+                Passenger passenger = hashTable.get(Integer.parseInt(atributs[0]));
+                if (passenger != null) {
+                    passenger.toString();
+                    passenger.setTime(LocalTime.now());
+                    if (passenger.getTime().isBefore(getTimeOfPlane())) {
+                        passenger.setMiles(passenger.getMiles() + 100);
+                    }
 
-                if (passenger.getFirstClass()) {
-                    firstClass.insert(passenger);
+                    if (passenger.getFirstClass()) {
+                        firstClass.insert(passenger);
+                    } else {
+                        turistClass.enqueue(passenger);
+                    }
                 } else {
-                    turistClass.enqueue(passenger);
+                    System.out.println("No se encontro el pasajero, intenta nuevamente (Revisa que la direccion que estas poniendo este bien escrita y que en cada salto de arhcivo este un \\)");
                 }
-            }
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    public void disembark() {
+    }
+
     public void order(){
         firstClass.print();
         turistClass.print();
     }
-
-
-
 }

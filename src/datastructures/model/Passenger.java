@@ -12,6 +12,8 @@ public class Passenger implements Comparable<Passenger> {
     private LocalTime time;
 
 
+
+
     public Passenger(String name, int id, int age, int miles, int row, String colum, Boolean firstClass) {
         this.name = name;
         this.id = id;
@@ -88,10 +90,10 @@ public class Passenger implements Comparable<Passenger> {
     }
     @Override
     public String toString(){
-        return "Passenger is: "+name +".";
+        return "The name of the passenger is: "+name +".";
     }
 
-
+    @Override
     public int compareTo(Passenger other){
         int forMiles = Integer.compare(this.miles, other.getMiles());
         if(forMiles != 0){
