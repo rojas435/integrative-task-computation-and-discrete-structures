@@ -36,11 +36,8 @@ public class Passenger implements Comparable<Passenger> {
         this.firstClass = firstClass;
 
         this.miles = miles;
-<<<<<<< HEAD
 
         this.time = time;
-=======
->>>>>>> 16d40d95128cd49f2ba0cd0911f5b5cd39637f20
     }
 
     public String getName() {
@@ -124,12 +121,7 @@ public class Passenger implements Comparable<Passenger> {
     }
     @Override
     public String toString(){
-<<<<<<< HEAD
-
-        return "El nombre del pasajero es: "+name +".";
-=======
         return "The name of the passenger is: "+name +".\n";
->>>>>>> 16d40d95128cd49f2ba0cd0911f5b5cd39637f20
     }
 
     @Override
