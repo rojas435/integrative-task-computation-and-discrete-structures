@@ -11,7 +11,6 @@ import java.io.*;
 import java.util.ArrayList;
 
 import java.util.Iterator;
-
 import java.util.stream.Stream;
 
 public class Controller {
@@ -124,7 +123,6 @@ public class Controller {
 
         }
     }
-
 
     public ArrayList<String> disembark() {
         ArrayList<String> desabordando = new ArrayList<>();
