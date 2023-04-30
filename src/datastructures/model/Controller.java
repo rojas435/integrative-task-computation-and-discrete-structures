@@ -9,7 +9,11 @@ import java.time.LocalTime;
 import java.io.*;
 
 import java.util.ArrayList;
+<<<<<<< HEAD
 
+=======
+import java.util.Iterator;
+>>>>>>> 16d40d95128cd49f2ba0cd0911f5b5cd39637f20
 import java.util.stream.Stream;
 
 public class Controller {
@@ -123,9 +127,43 @@ public class Controller {
         }
     }
 
+<<<<<<< HEAD
     public void disembark() {
 
+=======
+    public ArrayList<String> disembark() {
+        ArrayList<String> desabordando = new ArrayList<>();
+        Queue<Passenger> primeraClase = new Queue<>();
+        Queue<Passenger> claseEconomica = new Queue<>();
+    
+        Iterator<Passenger> iterator = Passenger.iterator();
+    
+        while (iterator.hasNext()) {
+            Passenger pasajero = iterator.next();
+            if (pasajero.getClass().equals("primera")) {
+                primeraClase.enqueue(pasajero);
+                iterator.remove();
+            } else {
+                claseEconomica.enqueue(pasajero);
+                iterator.remove();
+            }
+        }
+    
+        while (!primeraClase.isEmpty() || !claseEconomica.isEmpty()) {
+            if (!primeraClase.isEmpty()) {
+                Passenger pasajero = primeraClase.dequeue();
+                desabordando.add(pasajero.getName());
+            } else {
+                Passenger pasajero = claseEconomica.dequeue();
+                desabordando.add(pasajero.getName());
+            }
+        }
+    
+        return desabordando;
+>>>>>>> 16d40d95128cd49f2ba0cd0911f5b5cd39637f20
     }
+    
+    
 
     public void order(){
 
