@@ -11,7 +11,7 @@ The monitor has to change this path of hes computer for uploading the two files 
 Remember that for each change of folder you have to add a "\\".
 
 
-#Members:
+# Members:
 
 Juan Felipe Jojoa - A00382042, Felipe Rojas Prado - A00393918
 
